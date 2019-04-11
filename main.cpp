@@ -1,10 +1,16 @@
 #include <iostream>
 
+#ifdef _MSC_VER
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
+
 #include "lock.h"
 
 int main()
 {
-    // cleanLockFile();
+    cleanLockFile();
 
     std::cout << processId() << std::endl;
     if (!isOnlyInstance()) {
@@ -12,7 +18,11 @@ int main()
     }
     lockProcess();
 
+#ifdef _MSC_VER
+	Sleep(5000);
+#else
     ::sleep(5);
+#endif
     unlockProcess();
     return 0;
 }

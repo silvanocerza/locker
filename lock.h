@@ -5,9 +5,9 @@
 #include <string>
 #include <vector>
 
-#ifdef Q_OS_WIN
-#include <Psapi.h>
+#ifdef _MSC_VER
 #include <Windows.h>
+#include <Psapi.h>
 #include <tchar.h>
 #else
 #include <unistd.h>
